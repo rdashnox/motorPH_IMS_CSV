@@ -8,6 +8,10 @@ package inventorymanager;
 
 import java.util.Scanner;
 
+/**
+ *
+ * @author dashcodes
+ */
 
 public class Main {
     public static void main(String[] args) {
@@ -25,6 +29,7 @@ public class Main {
                 System.out.println("3. Delete Item");
                 System.out.println("4. Sort Items by Brand");
                 System.out.println("5. Search Item");
+                System.out.println("6. Reset Sorting");
                 System.out.println("0. Exit");
                 System.out.print("Enter your choice: ");
                 choice = scanner.nextInt();
@@ -59,6 +64,10 @@ public class Main {
                         } else {
                             System.out.println("Item not found.");
                         }
+                    }
+                    case 6 -> {
+                        manager.resetToOriginalOrder();
+                        System.out.println("Items reset to original order.");
                     }
                     case 0 -> {
                         System.out.println("Exiting...");
