@@ -19,9 +19,11 @@ import java.util.List;
 
 public class InventoryManager {
     private final List<inventoryItem> inventory;
+    private final List<inventoryItem> originalInventory; // List to store the original order
 
     public InventoryManager() {
-        inventory = new ArrayList<>(); 
+        inventory = new ArrayList<>();
+        originalInventory = new ArrayList<>(); // Initialize the original inventory list
     }
 
      /**
@@ -50,7 +52,9 @@ public class InventoryManager {
                 String status = values[4]; //Status is placed in the fifth and final column
 
                 // Create a new InventoryItem and add it to the inventory
-                inventory.add(new inventoryItem(brand, engineNumber, status));
+                inventoryItem item = new inventoryItem(brand, engineNumber, status);
+                inventory.add(item);
+                originalInventory.add(item); // Store the original order
             }
         } catch (IOException e) {
             System.err.println("Error reading the file: " + e.getMessage());
@@ -89,6 +93,12 @@ public class InventoryManager {
     // Sort items by brand
     public void sortItemsByBrand() {
         Collections.sort(inventory, Comparator.comparing(inventoryItem::getBrand));
+    }
+    
+    // Reset inventory to original order
+    public void resetToOriginalOrder() {
+        inventory.clear(); // Clear the current inventory
+        inventory.addAll(originalInventory); // Restore the original order
     }
 
     // Search for an item by engine number
