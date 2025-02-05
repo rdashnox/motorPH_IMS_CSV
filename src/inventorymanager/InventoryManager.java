@@ -133,6 +133,7 @@ public class InventoryManager {
         inventory.sort(Comparator.comparing(inventoryItem::getBrand));
     }
     
+    
     // Reset inventory to original order
     public void resetToOriginalOrder() {
         inventory.clear();

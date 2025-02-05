@@ -14,7 +14,16 @@ import java.util.Scanner;
  */
 
 public class Main {
-    public static void main(String[] args, boolean CSV_HEADER) {
+    private static final boolean CSV_HEADER = true; /** Flag to control CSV header display */
+    
+    /**
+     * Entry point of the application.
+     * Handles user interaction and inventory operations.
+     *
+     * @param args Command line arguments (not used)
+     */
+    
+    public static void main(String[] args) {
         InventoryManager manager = new InventoryManager("inventory_data.csv");
         manager.loadInventory();
         
@@ -28,6 +37,7 @@ public class Main {
                 System.out.println("3. Delete Item");
                 System.out.println("4. Sort Items by Brand");
                 System.out.println("5. Search Item");
+                System.out.println("6. Reset Sort Order");
                 System.out.println("0. Exit");
                 System.out.print("Enter your choice: ");
                 
@@ -67,6 +77,11 @@ public class Main {
                         } else {
                             System.out.println("Item not found.");
                         }
+                    }
+                    case 6 -> {
+                        manager.resetToOriginalOrder();
+                        System.out.println("Sort order reset to original.");
+                        manager.displayInventory();
                     }
                     case 0 -> {
                         System.out.println("Exiting...");
